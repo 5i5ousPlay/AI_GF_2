@@ -4,7 +4,8 @@ from django.http import JsonResponse
 from django.conf import settings
 from .models import Chat
 from django.utils import timezone
-from rest_framework import generics
+from rest_framework import generics, status
+from django.contrib.auth.decorators import login_required
 from .serializers import ChatSerializer
 
 # Create your views here.
@@ -25,6 +26,7 @@ def ask_openai(message):
     return answer
 
 
+@login_required()
 def chatbot(request):
     chats = Chat.objects.filter(user=request.user)
 

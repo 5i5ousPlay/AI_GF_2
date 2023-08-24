@@ -52,6 +52,10 @@ SITE_ID = 1
 
 OPENAI_API_KEY = config("OPENAI_API_KEY")
 
+ACCOUNT_LOGOUT_ON_GET = True
+
+LOGIN_URL = '/dj-rest-auth/login/'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
