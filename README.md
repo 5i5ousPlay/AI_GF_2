@@ -23,14 +23,14 @@ Based off of https://github.com/tomitokko/django-chatbot
 
 # Registration
 * yeah users register here
-* no this doesnt automatically redirect to the chatbot
-* might fix if not lazy
+* creates user and logs them in
+* automatically redirects to chatbot upon registration
 
 **Endpoint**
 
-```/dj-rest-auth/registration/```
+```/chatbot/register/```
 
-![image](https://github.com/5i5ousPlay/AI_GF_2/assets/117207815/19b3cc0b-cb0f-447a-92cd-6082a8164df8)
+![image](https://github.com/5i5ousPlay/AI_GF_2/assets/117207815/eb49a51f-486d-4a8c-9aa7-d004771cf342)
 
 # Logout
 * logs user out on get
