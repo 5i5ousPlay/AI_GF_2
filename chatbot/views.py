@@ -5,7 +5,10 @@ from django.conf import settings
 from .models import Chat
 from django.utils import timezone
 from rest_framework import generics, status
+from rest_framework.permissions import IsAuthenticated
+from dj_rest_auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, reverse
 from .serializers import ChatSerializer
 
 # Create your views here.
@@ -43,3 +46,16 @@ def chatbot(request):
 class ChatListView(generics.ListAPIView):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
+    permission_classes = [IsAuthenticated]
+    def get_queryset(self):
+        return Chat.objects.filter(user=self.request.user)
+
+
+class CustomLoginView(LoginView):
+    def post(self, request, *args, **kwargs):
+        self.request = request
+        self.serializer = self.get_serializer(data=self.request.data)
+        self.serializer.is_valid(raise_exception=True)
+
+        self.login()
+        return redirect(reverse('chatbot:chatbot'))

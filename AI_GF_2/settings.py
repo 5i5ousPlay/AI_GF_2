@@ -54,7 +54,7 @@ OPENAI_API_KEY = config("OPENAI_API_KEY")
 
 ACCOUNT_LOGOUT_ON_GET = True
 
-LOGIN_URL = '/dj-rest-auth/login/'
+LOGIN_URL = '/chatbot/login/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
