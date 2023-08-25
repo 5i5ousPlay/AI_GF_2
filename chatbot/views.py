@@ -5,9 +5,12 @@ from django.conf import settings
 from .models import Chat
 from django.utils import timezone
 from rest_framework import generics, status
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from dj_rest_auth.views import LoginView
+from dj_rest_auth.registration.views import RegisterView
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, reverse
 from .serializers import ChatSerializer
 
@@ -58,4 +61,10 @@ class CustomLoginView(LoginView):
         self.serializer.is_valid(raise_exception=True)
 
         self.login()
+        return redirect(reverse('chatbot:chatbot'))
+
+
+class CustomRegistrationView(RegisterView):
+    def post(self, request, *args, **kwargs):
+        self.create(request, *args, **kwargs)
         return redirect(reverse('chatbot:chatbot'))
