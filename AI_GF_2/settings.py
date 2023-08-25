@@ -56,6 +56,8 @@ ACCOUNT_LOGOUT_ON_GET = True
 
 LOGIN_URL = '/chatbot/login/'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
